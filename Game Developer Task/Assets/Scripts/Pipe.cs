@@ -16,14 +16,11 @@ public class Pipe : MonoBehaviour {
     // Only X axis 
     private int RotateAmount = 90;
 
-    float RotateSpeed = 1000;
-
-    // SOUND.CS
-
     private void OnMouseDown () {
-        if(Type != PipeType.Rounded)transform.root.transform.Rotate(90, 0 , 0);
-        else transform.root.transform.Rotate(0, 90 , 0);
-
+        if(Type != PipeType.Rounded)transform.root.transform.Rotate(RotateAmount, 0 , 0);
+        else transform.root.transform.Rotate(0, RotateAmount , 0);
+       
     }
+
 
 }
