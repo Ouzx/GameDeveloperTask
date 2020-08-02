@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5389318995591758186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13252098456009660}
+  m_Layer: 0
+  m_Name: LevelTemp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &13252098456009660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389318995591758186}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8328336251202364346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8328336251202364348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8328336251202364346}
+  - component: {fileID: 2339519726415487186}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8328336251202364346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328336251202364348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.089535, y: 30.356916, z: 8.822872}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 13252098456009660}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2339519726415487186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328336251202364348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ed6b1856deff44aa8464caa8d41fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pixelColorMappings:
+  - pixelColor: {r: 1, g: 0, b: 0, a: 1}
+    prefab: {fileID: 2427630199761539829, guid: 1d915e1ad9f198840a1ad05e4dd1c441,
+      type: 3}
+  - pixelColor: {r: 0, g: 1, b: 0, a: 1}
+    prefab: {fileID: 8714259436798773604, guid: 9fdf8f3fee85cee4baf0858cc878c980,
+      type: 3}
+  - pixelColor: {r: 0, g: 0, b: 1, a: 1}
+    prefab: {fileID: 1998380038473313336, guid: de12d408a75cbca4690a7cd903ba892f,
+      type: 3}
+  - pixelColor: {r: 1, g: 1, b: 0, a: 1}
+    prefab: {fileID: 6247854141655305225, guid: 99b6f4e056f7cc34bb670d7c9c12d0da,
+      type: 3}
+  - pixelColor: {r: 1, g: 1, b: 1, a: 1}
+    prefab: {fileID: 5345587064363197088, guid: 25383fe898e2434428519e4fb21674c3,
+      type: 3}
+  - pixelColor: {r: 0, g: 0, b: 0, a: 1}
+    prefab: {fileID: 2695561722424827333, guid: b52596684de46e840aa7178b00a4cbf7,
+      type: 3}
+  levelTemp: {fileID: 5389318995591758186}
+  levels: []
+  levelNum: 0

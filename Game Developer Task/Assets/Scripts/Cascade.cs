@@ -8,7 +8,6 @@ public class Cascade : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-    float temp = 0;
     void Update()
     {
         animator.SetBool("timeOut", ProgressBar.timeOut);
