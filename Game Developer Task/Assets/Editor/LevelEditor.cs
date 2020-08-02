@@ -12,7 +12,8 @@ public class LevelEditor : Editor
     LevelManager lm;
 
     private Color pixelColor;
-    private float prefabSize = 2.4f;
+    private float prefabSize = 8f;
+    //private float prefabSize = 2.4f;
 
     private bool foldLevels = true;
     private bool foldColors = true;

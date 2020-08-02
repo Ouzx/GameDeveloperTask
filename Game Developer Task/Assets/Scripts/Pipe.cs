@@ -17,29 +17,28 @@ public class Pipe : MonoBehaviour
     public PipeType Type;
     public bool Rigidity = false;
     public int solutionNum = 0;
+    // Only x axis
     public int[] Rotations = { 0, 90, 180, 270 };
     public int rotation = 0;
 
-    private void OnMouseDown()
+    public void Rotate()
     {
         if (rotation < 4) rotation++;
         if (rotation == 4) rotation = 0;
     }
     private void Start()
     {
-        rotation = Rotations[Random.Range(0, 4)];
+        rotation = Random.Range(0, 4);
     }
     private void Update()
     {
         if (!Rigidity)
         {
-            if (Type != PipeType.Rounded) transform.root.transform.rotation = Quaternion.Euler(rotation, 0, 0);
-            else transform.root.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            transform.rotation = Quaternion.Euler(Rotations[rotation], 0, 0);
         }
         else
         {
-            if (Type != PipeType.Rounded) transform.root.transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
-            else transform.root.transform.rotation = Quaternion.Euler(0, Rotations[solutionNum], 0);
+            transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
         }
     }
 
