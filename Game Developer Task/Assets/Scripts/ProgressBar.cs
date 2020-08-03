@@ -6,6 +6,7 @@ public class ProgressBar : MonoBehaviour
 {
     private Slider slider;
     private ParticleSystem ps;
+    [HideInInspector]
     public float maxTime = 3;
     public static bool timeOut = false;
     private void Awake()

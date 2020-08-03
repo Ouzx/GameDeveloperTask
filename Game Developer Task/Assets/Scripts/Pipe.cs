@@ -25,6 +25,8 @@ public class Pipe : MonoBehaviour
     {
         if (rotation < 4) rotation++;
         if (rotation == 4) rotation = 0;
+        //StartRotation();
+
     }
     private void Start()
     {
@@ -40,7 +42,38 @@ public class Pipe : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
         }
+        // if (!Rigidity)
+        // {
+        //     targetRotation = new Vector3(Rotations[rotation], 0, 0);
+        // }
+        // else
+        // {
+        //     targetRotation = new Vector3(Rotations[solutionNum], 0, 0);
+        // }
     }
+    // public Vector3 targetRotation;
+    // private float rotatingSpeed = .5f;
+    // private bool rotating;
+    // public void StartRotation()
+    // {
+    //     //if (!rotating)
+    //         StartCoroutine(Rotate(targetRotation, rotatingSpeed));
+    // }
+
+    // private IEnumerator Rotate(Vector3 angles, float duration)
+    // {
+    //     rotating = true;
+    //     Quaternion startRotation = transform.rotation;
+    //     Quaternion endRotation = Quaternion.Euler(angles) * startRotation;
+    //     for (float t = 0; t < duration; t += Time.deltaTime)
+    //     {
+    //         transform.rotation = Quaternion.Lerp(startRotation, endRotation, t / duration);
+    //         yield return null;
+    //     }
+    //     transform.rotation = endRotation;
+    //     rotating = false;
+    // }
+
 
 
 }

@@ -1,5 +1,7 @@
 ﻿// Oz
+using System;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,27 +18,60 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    public GameObject Slider;
+    public TextMeshPro score;
 
     private int activeLevel = 1;
-    private void Start() {
+    private bool isWin = false;
+    private void Start()
+    {
         LevelManager.Instance.levelNum = activeLevel;
         LevelManager.Instance.SetLevel();
+        Slider.GetComponent<ProgressBar>().maxTime = LevelManager.Instance.GetLevelTime();
     }
-    private void Update() {
-    //     if(LevelManager.Instance.CheckSolution()){
-    //         // Pop up end of level menu dont stop game
-    //     }
-    //     else{//fail level}
+
+    private void Update()
+    {
+
+        //     if(LevelManager.Instance.CheckSolution()){
+        //         // Pop up end of level menu dont stop game
+        //     }
+        //     else{//fail level}
+    }
+    public void WinLevel()
+    {
+        FindObjectOfType<AudioManager>().Play("Succses");
+        score.text = (Convert.ToInt32(score.text) + LevelManager.Instance.GetLevelPoint()).ToString();
+        Debug.Log("win");
+        isWin = true;
+    }
+    float toFail = 0;
+    bool failKey = false;
+    public void FailLevel()
+    {
+        if (!failKey)
+        {
+            toFail += Time.deltaTime;
+            if (toFail >= LevelManager.Instance.GetFailTime() && !isWin)
+            {
+                Debug.Log("fail");
+                FindObjectOfType<AudioManager>().Play("Fail");
+                failKey = true;
+            }
+        }
     }
 
     public GameObject fluid;
     public float capsulationTime;
-    float temp = 0;
+    float toStart = 0;
 
     public void StartGame()
     {
-        temp += Time.deltaTime;
-        if (temp >= capsulationTime)
+        toStart += Time.deltaTime;
+        if (toStart >= capsulationTime)
+        {
             fluid.SetActive(true);
-    }   
+            FailLevel();
+        }
+    }
 }

@@ -10,5 +10,6 @@ using System.Collections.Generic;
         public List<PipeProperty> pipes = new List<PipeProperty>(1);
         public int levelTime;
         public int sucssesPoint;
+        public int failTime;
 
     }

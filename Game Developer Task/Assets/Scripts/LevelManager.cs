@@ -13,9 +13,9 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     public List<PixelToObject> pixelColorMappings = new List<PixelToObject>(1);
-    public GameObject levelTemp;
     public List<Level> levels = new List<Level>(1);
     private List<GameObject> levelPipes = new List<GameObject>();
+    public GameObject levelTemp;
     public int levelNum;
 
     public void PreviewObjects(int num)
@@ -40,16 +40,9 @@ public class LevelManager : MonoBehaviour
         levelPipes.Clear();
     }
 
-    public bool CheckSolution()
-    {
-        int solution = 0;
-        foreach (GameObject obj in levelPipes)
-        {
-            if (obj.GetComponent<Pipe>().rotation == obj.GetComponent<Pipe>().solutionNum)
-                solution++;
-        }
-        if (solution == levelPipes.Count - 2) return true;
-        else return false;
-    }
 
+    public int GetLevelTime() => levels[levelNum].levelTime;
+
+    public int GetLevelPoint() => levels[levelNum].sucssesPoint;
+    public int GetFailTime() => levels[levelNum].failTime;
 }

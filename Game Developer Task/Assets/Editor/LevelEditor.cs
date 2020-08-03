@@ -105,11 +105,13 @@ public class LevelEditor : Editor
                 SerializedProperty pipes = level.FindPropertyRelative("pipes");
                 SerializedProperty levelTime = level.FindPropertyRelative("levelTime");
                 SerializedProperty sucssesPoint = level.FindPropertyRelative("sucssesPoint");
+                SerializedProperty failTime = level.FindPropertyRelative("failTime");
 
                 EditorGUILayout.LabelField("Level " + (i + 1).ToString() + ": ", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(mapTexture);
                 EditorGUILayout.PropertyField(levelTime);
                 EditorGUILayout.PropertyField(sucssesPoint);
+                EditorGUILayout.PropertyField(failTime);
 
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Generate Pipes!", GUILayout.MaxWidth(130), GUILayout.MaxHeight(20)))
