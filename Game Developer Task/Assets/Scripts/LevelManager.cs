@@ -45,4 +45,5 @@ public class LevelManager : MonoBehaviour
 
     public int GetLevelPoint() => levels[levelNum].sucssesPoint;
     public int GetFailTime() => levels[levelNum].failTime;
+    public string GetLevelName() => (levelNum+1).ToString();
 }

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     #endregion
     public GameObject Slider;
     public TextMeshPro score;
+    public TextMeshProUGUI level;
 
     private int activeLevel = 1;
     private bool isWin = false;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         LevelManager.Instance.levelNum = activeLevel;
         LevelManager.Instance.SetLevel();
         Slider.GetComponent<ProgressBar>().maxTime = LevelManager.Instance.GetLevelTime();
+        level.text = LevelManager.Instance.GetLevelName();
     }
 
     private void Update()
