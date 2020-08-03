@@ -19,34 +19,42 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     public GameObject Slider;
-    public TextMeshPro score;
+    public TextMeshProUGUI score;
     public TextMeshProUGUI level;
+    public GameObject Menu;
 
-    private int activeLevel = 1;
+
+    private int activeLevel = 0;
     private bool isWin = false;
-    private void Start()
+
+    public void SetGame()
     {
-        LevelManager.Instance.levelNum = activeLevel;
+        Menu.GetComponent<Pause>().ResetMenu();
+        LevelManager.Instance.ClearLevel();
+        LevelManager.Instance.SetLevel(activeLevel);
         LevelManager.Instance.SetLevel();
         Slider.GetComponent<ProgressBar>().maxTime = LevelManager.Instance.GetLevelTime();
+        Slider.GetComponent<ProgressBar>().ResetProgressBar();
         level.text = LevelManager.Instance.GetLevelName();
+        isWin = false;
+        toFail = 0;
+        failKey = false;
+        toStart = 0;
     }
-
-    private void Update()
+    private void Start()
     {
-
-        //     if(LevelManager.Instance.CheckSolution()){
-        //         // Pop up end of level menu dont stop game
-        //     }
-        //     else{//fail level}
+        SetGame();
     }
+
     public void WinLevel()
     {
         FindObjectOfType<AudioManager>().Play("Succses");
         score.text = (Convert.ToInt32(score.text) + LevelManager.Instance.GetLevelPoint()).ToString();
         Debug.Log("win");
         isWin = true;
+        Menu.GetComponent<Pause>().Win();
     }
+
     float toFail = 0;
     bool failKey = false;
     public void FailLevel()
@@ -59,12 +67,20 @@ public class GameManager : MonoBehaviour
                 Debug.Log("fail");
                 FindObjectOfType<AudioManager>().Play("Fail");
                 failKey = true;
+                Menu.GetComponent<Pause>().Fail();
+
             }
         }
     }
 
-    public GameObject fluid;
-    public float capsulationTime;
+    public void NextLevel()
+    {
+        activeLevel++;
+        SetGame();
+    }
+
+
+    public float capsulationTime = 1.7f;
     float toStart = 0;
 
     public void StartGame()
@@ -72,7 +88,7 @@ public class GameManager : MonoBehaviour
         toStart += Time.deltaTime;
         if (toStart >= capsulationTime)
         {
-            fluid.SetActive(true);
+            OpenCapsule.Instance.Capsulete();
             FailLevel();
         }
     }

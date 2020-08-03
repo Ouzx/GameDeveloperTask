@@ -25,12 +25,25 @@ public class LevelManager : MonoBehaviour
             Instantiate(var.prefab, var.pos, Quaternion.identity, levelTemp.transform);
         }
     }
-
+    public void SetLevel(int _levelNum)
+    {
+        if (_levelNum < levels.Count)
+            levelNum = _levelNum;
+    }
     public void SetLevel()
     {
         foreach (PipeProperty var in levels[levelNum].pipes)
         {
-            levelPipes.Add(Instantiate(var.prefab, var.pos, Quaternion.identity));
+            GameObject obj = Instantiate(var.prefab, var.pos, Quaternion.identity);
+            Pipe temp = obj.GetComponent<Pipe>();
+            if (temp != null)
+            {
+                temp.Rigidity = var.Rigidity;
+                temp.Type = var.Type;
+                temp.solutionNum = var.solutionNum;
+                temp.playType = levels[levelNum].playType;
+            }
+            levelPipes.Add(obj);
         }
     }
 
@@ -45,5 +58,5 @@ public class LevelManager : MonoBehaviour
 
     public int GetLevelPoint() => levels[levelNum].sucssesPoint;
     public int GetFailTime() => levels[levelNum].failTime;
-    public string GetLevelName() => (levelNum+1).ToString();
+    public string GetLevelName() => (levelNum + 1).ToString();
 }

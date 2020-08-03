@@ -20,12 +20,27 @@ public class Pipe : MonoBehaviour
     // Only x axis
     public int[] Rotations = { 0, 90, 180, 270 };
     public int rotation = 0;
+    public Material solid;
+    public bool playType = false;
+    private bool stuck = false;
+    private float rotatingSpeed = 100f;
 
     public void Rotate()
     {
-        if (rotation < 4) rotation++;
-        if (rotation == 4) rotation = 0;
-        //StartRotation();
+        if (playType)
+        {
+            if (!Rigidity)
+            {
+                if (rotation < 4) rotation++;
+                if (rotation == 4) rotation = 0;
+                //StartRotation();
+            }
+        }
+        else
+        {
+            if (stuck) stuck = false;
+            else stuck = true;
+        }
 
     }
     private void Start()
@@ -34,46 +49,33 @@ public class Pipe : MonoBehaviour
     }
     private void Update()
     {
-        if (!Rigidity)
+        if (playType)
         {
-            transform.rotation = Quaternion.Euler(Rotations[rotation], 0, 0);
+            if (!Rigidity)
+            {
+                transform.rotation = Quaternion.Euler(Rotations[rotation], 0, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
+                transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().material = solid;
+
+            }
         }
         else
         {
-            transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
+            if (!Rigidity)
+            {
+                if (!stuck)
+                    transform.Rotate(rotatingSpeed * Time.deltaTime, 0, 0);
+
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(Rotations[solutionNum], 0, 0);
+                transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>().material = solid;
+            }
         }
-        // if (!Rigidity)
-        // {
-        //     targetRotation = new Vector3(Rotations[rotation], 0, 0);
-        // }
-        // else
-        // {
-        //     targetRotation = new Vector3(Rotations[solutionNum], 0, 0);
-        // }
     }
-    // public Vector3 targetRotation;
-    // private float rotatingSpeed = .5f;
-    // private bool rotating;
-    // public void StartRotation()
-    // {
-    //     //if (!rotating)
-    //         StartCoroutine(Rotate(targetRotation, rotatingSpeed));
-    // }
-
-    // private IEnumerator Rotate(Vector3 angles, float duration)
-    // {
-    //     rotating = true;
-    //     Quaternion startRotation = transform.rotation;
-    //     Quaternion endRotation = Quaternion.Euler(angles) * startRotation;
-    //     for (float t = 0; t < duration; t += Time.deltaTime)
-    //     {
-    //         transform.rotation = Quaternion.Lerp(startRotation, endRotation, t / duration);
-    //         yield return null;
-    //     }
-    //     transform.rotation = endRotation;
-    //     rotating = false;
-    // }
-
-
 
 }

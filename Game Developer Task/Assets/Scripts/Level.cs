@@ -11,5 +11,6 @@ using System.Collections.Generic;
         public int levelTime;
         public int sucssesPoint;
         public int failTime;
+        public bool playType;
 
     }

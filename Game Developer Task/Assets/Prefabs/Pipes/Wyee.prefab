@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fa9d91edad97e346896eabac72b92d9, type: 2}
+  - {fileID: 2100000, guid: 5a7639817b75ddc4d9c673e96ad1c644, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   solutionNum: 0
   Rotations: 000000005a000000b40000000e010000
   rotation: 0
+  solid: {fileID: 2100000, guid: 09f42c2b6a95df5448520507e4b4a2eb, type: 2}
 --- !u!1 &2534323621161205388
 GameObject:
   m_ObjectHideFlags: 0

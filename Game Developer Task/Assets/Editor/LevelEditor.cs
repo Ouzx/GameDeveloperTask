@@ -12,8 +12,8 @@ public class LevelEditor : Editor
     LevelManager lm;
 
     private Color pixelColor;
-    private float prefabSize = 8f;
-    //private float prefabSize = 2.4f;
+    //private float prefabSize = 8f;
+    private float prefabSize = 2.4f;
 
     private bool foldLevels = true;
     private bool foldColors = true;
@@ -106,12 +106,14 @@ public class LevelEditor : Editor
                 SerializedProperty levelTime = level.FindPropertyRelative("levelTime");
                 SerializedProperty sucssesPoint = level.FindPropertyRelative("sucssesPoint");
                 SerializedProperty failTime = level.FindPropertyRelative("failTime");
-
+                SerializedProperty playType = level.FindPropertyRelative("playType");
                 EditorGUILayout.LabelField("Level " + (i + 1).ToString() + ": ", EditorStyles.boldLabel);
+                
                 EditorGUILayout.PropertyField(mapTexture);
                 EditorGUILayout.PropertyField(levelTime);
-                EditorGUILayout.PropertyField(sucssesPoint);
                 EditorGUILayout.PropertyField(failTime);
+                EditorGUILayout.PropertyField(sucssesPoint);
+                EditorGUILayout.PropertyField(playType);
 
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Generate Pipes!", GUILayout.MaxWidth(130), GUILayout.MaxHeight(20)))
