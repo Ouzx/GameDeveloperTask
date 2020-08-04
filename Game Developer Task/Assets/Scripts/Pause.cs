@@ -38,10 +38,15 @@ public class Pause : MonoBehaviour
         GameManager.Instance.SetGame();
     }
 
-    public void LevelMenu()
+    public void NextLevel()
     {
         Resume();
-        // SceneManager.LoadScene("Main Menu");
+        GameManager.Instance.NextLevel();
+    }
+    public void ResetMenu()
+    {
+        Resume();
+        foreach (Transform v in pauseMenuUI.transform) v.gameObject.SetActive(false);
     }
     public void Win()
     {
@@ -54,14 +59,17 @@ public class Pause : MonoBehaviour
         PauseGame(false);
         pauseMenuUI.transform.GetChild(2).gameObject.SetActive(true);
     }
-    public void NextLevel()
+    public void LevelMenu()
     {
-        Resume();
-        GameManager.Instance.NextLevel();
+        GameManager.Instance.ListLevels();
+        pauseMenuUI.transform.GetChild(3).gameObject.SetActive(true);
+
     }
-    public void ResetMenu()
-    {
-        Resume();
-        foreach (Transform v in pauseMenuUI.transform) v.gameObject.SetActive(false);
+    public void AlreadyWin(){
+        PauseGame(false);
+        pauseMenuUI.transform.GetChild(4).gameObject.SetActive(true);
+    }
+    public void StartGame(){
+        pauseMenuUI.transform.GetChild(5).gameObject.SetActive(true);
     }
 }

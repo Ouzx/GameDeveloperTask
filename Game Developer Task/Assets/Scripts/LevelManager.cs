@@ -28,7 +28,11 @@ public class LevelManager : MonoBehaviour
     public void SetLevel(int _levelNum)
     {
         if (_levelNum < levels.Count)
+        {
             levelNum = _levelNum;
+            levels[levelNum].isLocked = false;
+        }
+
     }
     public void SetLevel()
     {
@@ -47,6 +51,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void ListLevels(GameObject menu, GameObject locked, GameObject open)
+    {
+        foreach (Level level in levels)
+        {
+            if (level.isLocked)
+            {
+                Instantiate(locked, new Vector3(), Quaternion.identity, menu.transform);
+            }
+            else
+            {
+                Instantiate(open, new Vector3(), Quaternion.identity, menu.transform).GetComponent<LevelSelector>().levelNum = levels.IndexOf(level);
+            }
+        }
+    }
+
     public void ClearLevel()
     {
         foreach (GameObject obj in levelPipes) GameObject.Destroy(obj);
@@ -59,4 +78,9 @@ public class LevelManager : MonoBehaviour
     public int GetLevelPoint() => levels[levelNum].sucssesPoint;
     public int GetFailTime() => levels[levelNum].failTime;
     public string GetLevelName() => (levelNum + 1).ToString();
+    public int GetLevelCount() => levels.Count;
+    public void Win()
+    {
+        levels[levelNum].completed = true;
+    }
 }

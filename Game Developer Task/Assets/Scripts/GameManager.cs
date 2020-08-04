@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI score;
     public TextMeshProUGUI level;
     public GameObject Menu;
+    public GameObject LevelList;
+    public GameObject locked;
+    public GameObject open;
 
 
     private int activeLevel = 0;
@@ -30,6 +33,10 @@ public class GameManager : MonoBehaviour
     public void SetGame()
     {
         Menu.GetComponent<Pause>().ResetMenu();
+        foreach (Transform child in LevelList.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
         LevelManager.Instance.ClearLevel();
         LevelManager.Instance.SetLevel(activeLevel);
         LevelManager.Instance.SetLevel();
@@ -43,16 +50,24 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        SetGame();
+        Menu.GetComponent<Pause>().StartGame();
     }
 
     public void WinLevel()
     {
         FindObjectOfType<AudioManager>().Play("Succses");
-        score.text = (Convert.ToInt32(score.text) + LevelManager.Instance.GetLevelPoint()).ToString();
-        Debug.Log("win");
         isWin = true;
-        Menu.GetComponent<Pause>().Win();
+        if (LevelManager.Instance.levels[activeLevel].completed)
+        {
+            Menu.GetComponent<Pause>().AlreadyWin();
+        }
+        else
+        {
+            score.text = (Convert.ToInt32(score.text) + LevelManager.Instance.GetLevelPoint()).ToString();
+            LevelManager.Instance.Win();
+            Menu.GetComponent<Pause>().Win();
+        }
+
     }
 
     float toFail = 0;
@@ -64,7 +79,6 @@ public class GameManager : MonoBehaviour
             toFail += Time.deltaTime;
             if (toFail >= LevelManager.Instance.GetFailTime() && !isWin)
             {
-                Debug.Log("fail");
                 FindObjectOfType<AudioManager>().Play("Fail");
                 failKey = true;
                 Menu.GetComponent<Pause>().Fail();
@@ -79,6 +93,18 @@ public class GameManager : MonoBehaviour
         SetGame();
     }
 
+    public void ListLevels()
+    {
+        LevelManager.Instance.ListLevels(LevelList, locked, open);
+    }
+    public void GetCustomLevel(int customLevel)
+    {
+        if (customLevel < LevelManager.Instance.GetLevelCount())
+        {
+            activeLevel = customLevel;
+            SetGame();
+        }
+    }
 
     public float capsulationTime = 1.7f;
     float toStart = 0;

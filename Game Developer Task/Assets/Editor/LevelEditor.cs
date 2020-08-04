@@ -107,13 +107,18 @@ public class LevelEditor : Editor
                 SerializedProperty sucssesPoint = level.FindPropertyRelative("sucssesPoint");
                 SerializedProperty failTime = level.FindPropertyRelative("failTime");
                 SerializedProperty playType = level.FindPropertyRelative("playType");
+                SerializedProperty completed = level.FindPropertyRelative("completed");
+                SerializedProperty isLocked = level.FindPropertyRelative("isLocked");
+
                 EditorGUILayout.LabelField("Level " + (i + 1).ToString() + ": ", EditorStyles.boldLabel);
-                
+
                 EditorGUILayout.PropertyField(mapTexture);
                 EditorGUILayout.PropertyField(levelTime);
                 EditorGUILayout.PropertyField(failTime);
                 EditorGUILayout.PropertyField(sucssesPoint);
                 EditorGUILayout.PropertyField(playType);
+                EditorGUILayout.PropertyField(completed);
+                EditorGUILayout.PropertyField(isLocked);
 
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Generate Pipes!", GUILayout.MaxWidth(130), GUILayout.MaxHeight(20)))
@@ -130,28 +135,13 @@ public class LevelEditor : Editor
                 }
                 GUILayout.EndHorizontal();
 
+
                 EditorGUILayout.Space();
+
 
                 EditorGUILayout.BeginVertical();
                 EditorGUILayout.PropertyField(pipes);
-                // for (int k = 0; k < pipes.arraySize; k++)
-                // {
-                //     SerializedProperty temp = pipes.GetArrayElementAtIndex(k);
-                //     if (temp.GetComponent<Pipe>() != null)
-                //     {
-                //         Pipe pipe = temp.GetComponent<Pipe>();
-                //         EditorGUILayout.LabelField(pipe.Type.ToString() + ": Pipe(" + k.ToString() + ")");
-
-                //         EditorGUILayout.BeginHorizontal();
-                //         pipe.solutionNum = EditorGUILayout.IntField("Solution Num: ", pipe.solutionNum);
-                //         pipe.Rigidity = EditorGUILayout.Toggle("    Rigidity: ", pipe.Rigidity);
-                //         EditorGUILayout.EndHorizontal();
-                //         EditorGUILayout.Space();
-                //     }
-                // }
                 EditorGUILayout.EndVertical();
-
-                //EditorGUILayout.PropertyField(pipes);
 
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();
